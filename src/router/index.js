@@ -5,6 +5,9 @@ import VueRouter from 'vue-router'
 import Reg from "@/views/Reg/Reg.vue";
 // 导入 登录页面文件
 import Login from "@/views/Login/Login.vue";
+// 导入首页
+import main from "@/views/main/main.vue";
+
 
 Vue.use(VueRouter)
 
@@ -19,7 +22,12 @@ const routes = [
     //   登录页
     path : '/login' ,
     component: Login
-} ,
+  } ,
+  { 
+    // 首页
+    path: '/main', 
+    component: main 
+  }
 ]
 
 const router = new VueRouter({
