@@ -34,11 +34,53 @@
             <img src="../../assets/logo.png" alt="" v-else />
             <span> {{ userInfo.nickname || userInfo.username }} </span>
           </div>
+          <el-menu
+            default-active="/home"
+            class="el-menu-vertical-demo"
+            background-color="#23262E"
+            text-color="#fff"
+            active-text-color="#409EFF"
+            unique-opened
+            router=""
+          >
+          <!-- template: 模板标签 不会渲染dom结构 起到包裹标签作用 -->
+          <!-- template: 模板标签 不能使用key -->
+           <template v-for=" item in menusList">
+               <!-- 不包含子菜单的“一级菜单” -->
+              <el-menu-item 
+                :key="item.indexPath" 
+                :index="item.indexPath"
+                v-if="!item.children"
+                >
+                <i :class="item.icon"></i>{{ item.title }}
+              </el-menu-item>
+            <!-- 包含子菜单的“一级菜单” -->
+            <el-submenu 
+            :index="item.indexPath" 
+            :key="item.indexpath"
+            v-else
+             >
+              <template slot="title">
+                <i :class="item.icon"></i>
+                <span>{{ item.title }}</span>
+              </template>
+                <el-menu-item 
+                v-for="childItem in item.children"
+                :key="childItem.indexPath"
+                :index="childItem.indexPath"
+                >
+                <i :class="childItem.icon"></i>
+                {{ childItem.title }}
+                </el-menu-item>
+                
+            </el-submenu>
+           </template>
+         </el-menu>
         </el-aside>
       <el-container>
         <!-- 页面主体区域 -->
         <el-main>
-          Main.vue后台主页
+          <router-view></router-view>
         </el-main>
         <!-- 底部 footer 区域 -->
         <el-footer>© www.itheima.com - 黑马程序员</el-footer>
@@ -51,6 +93,11 @@
 import { mapState } from "vuex";
 export default {
   name: 'Main' ,
+  data() {
+    return {
+      menusList: [],
+    };
+  },
   methods: {
     //  1. 绑定事件函数
     loginout () {
@@ -75,14 +122,32 @@ export default {
         }).catch(() => {
           // 取消 
         });
+    } ,
+    async initMenus () {
+      const { data : res } = await this.$http.get('/my/menus')
+      if ( res.code == 0) {
+        this.menusList = res.data
+      }
     }
   } ,
-  // 调用ations中的函数
    created () {
+     // 调用ations中的函数
         this.$store.dispatch('initUserInfo')
+
+
+      // 调用initMenus函数
+      this.initMenus ()
+      
+      // 判断有没有token
+      if ( this.token ) {
+        this.$store.dispatch('initUserInfo')
+        this.initMenus()
+      } else {
+        this.$router.push('/login')
+      }
    } ,
    computed : {
-     ...mapState(['userInfo'])
+     ...mapState(['userInfo' , 'token'])
    }
 }
 </script>
@@ -131,7 +196,7 @@ export default {
     color: white;
     font-size: 12px;
   }
-  }
+}
 }
 
 .avatar {
@@ -141,5 +206,12 @@ export default {
   background-color: #fff;
   margin-right: 10px;
   object-fit: cover;
+}
+  .el-aside {
+  .el-submenu,
+  .el-menu-item {
+    width: 200px;
+    user-select: none;
+  }
 }
 </style>

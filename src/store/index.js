@@ -8,6 +8,13 @@ import createPersistedstate from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
+
+
+
+ 
+
+
+
 export default new Vuex.Store({
   plugins : [ createPersistedstate () ] ,
   state: {
@@ -34,11 +41,7 @@ export default new Vuex.Store({
     // 发送请求
     async initUserInfo ( context ) {
       // context 是 state的实例
-      const { data : res } = await axios.get('/my/userinfo' , {
-        headers : {
-          Authorization : context.state.token
-        }
-      })
+      const { data : res } = await axios.get('/my/userinfo')
       if ( res.code == 0 ) {
         // 3. 将获取到的数据保存到vuex中
         context.commit('updateUserInfo',res.data)
