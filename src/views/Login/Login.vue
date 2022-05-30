@@ -70,7 +70,7 @@ export default {
         // 4.1存储到本地存储
         // localStorage.setItem('token' , res.token)
         // 跳转到首页
-        this.$router.push('/main')
+        this.$router.push('/home')
       })
     }
   }

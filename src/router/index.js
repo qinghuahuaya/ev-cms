@@ -9,6 +9,12 @@ import Login from "@/views/Login/Login.vue";
 import main from "@/views/main/main.vue";
 // 导入图标页面
 import home from "@/views/menus/home/home.vue";
+// 导入密码项
+import userinfo from "@/views/menus/user/userinfo.vue";
+// 导入修改图片模块
+import useravatar from "@/views/menus/user/useravatar.vue";
+// 导入修改密码模块
+import userpwd from "@/views/menus/user/userpwd.vue";
 
 
 Vue.use(VueRouter)
@@ -41,6 +47,18 @@ const routes = [
       {
         path : 'home' ,
         component : home
+      } ,
+      {
+        path : 'user-info' ,
+        component : userinfo
+      } ,
+      {
+        path : 'user-avatar' ,
+        component : useravatar
+      } ,
+      {
+        path: 'user-pwd' , 
+        component: userpwd 
       }
     ]
   }
