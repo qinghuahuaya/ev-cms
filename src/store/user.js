@@ -1,19 +1,8 @@
-// import user from "./user";
-import Vue from 'vue'
-import Vuex from 'vuex'
 import axios from 'axios';
-
-// 导入 vuex 持久化插件
-import createPersistedstate from "vuex-persistedstate";
-
-
-Vue.use(Vuex)
-
-
-export default new Vuex.Store({
-  plugins : [ createPersistedstate () ] ,
+namespaced: true
+export default{
   state: {
-       // 存储token
+    // 存储token
     // token : localStorage.getItem('token') || ''
     token : '' ,
     // 5.存储userInfo
@@ -43,7 +32,5 @@ export default new Vuex.Store({
       }
     }
   },
-  // 模块化
-  modules: {
-  }
-})
+ 
+}

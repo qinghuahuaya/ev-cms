@@ -15,6 +15,10 @@ import userinfo from "@/views/menus/user/userinfo.vue";
 import useravatar from "@/views/menus/user/useravatar.vue";
 // 导入修改密码模块
 import userpwd from "@/views/menus/user/userpwd.vue";
+// 导入文章发表模块
+import artcate from "@/views/menus/article/artcate.vue";
+// 导入发表文章模块
+import artlist from "@/views/menus/article/artlist.vue";
 
 
 Vue.use(VueRouter)
@@ -57,8 +61,16 @@ const routes = [
         component : useravatar
       } ,
       {
-        path: 'user-pwd' , 
+        path : 'user-pwd' , 
         component: userpwd 
+      } ,
+      {
+        path : 'art-cate' ,
+        component : artcate
+      } ,
+      { 
+        path: 'art-list', 
+        component: artlist 
       }
     ]
   }

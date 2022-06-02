@@ -1,0 +1,30 @@
+网址 : https://www.showdoc.com.cn/1425457596992351/6972620264462285
+
+基地址 : http://big-event-vue-api-t.itheima.net
+
+注册 :  /api/reg   POST
+登录 : /api/login   POST
+
+获取用户基本信息 : /my/userinfo   GET
+更新用户的基本信息 : /my/userinfo   PUT
+重置密码 :   /my/updatepwd   PATCH
+更换头像 :  /my/update/avatar   PATCH
+
+
+获取左侧菜单列表 : /my/menus  GET
+
+
+
+获取文章分类列表 :  /my/cate/list GET
+新增文章分类 : /my/cate/add  POST
+删除文章分类 :  /my/cate/del  DELETE
+获取文章分类数据 :  /my/cate/info GET
+更新文章分类数据 :  /my/cate/info  PUT
+
+
+
+发布新文章 :  /my/article/add  POST
+获取文章的列表数据 :  /my/article/list GET
+删除文章数据 :  /my/article/info  DELETE
+获取文章详情 :   /my/article/info  GET
+更新文章信息 :  /my/article/info  PUT

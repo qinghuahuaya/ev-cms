@@ -12,13 +12,25 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 
+// 导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+// 导入富文本编辑器的样式
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+// 全局注册富文本编辑器
+Vue.use(VueQuillEditor)
+
 // 配置 axios
 // 引入 axiso 文件
 import axios from "axios";
 // 设置基地址 
-axios.defaults.baseURL = 'http://www.liulongbin.top:3008'
+axios.defaults.baseURL = 'http://big-event-vue-api-t.itheima.net'
 // 将 axios 挂载道Vue构造函数的原型对象 prototype 
 Vue.prototype.$http = axios
+
+
+
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
